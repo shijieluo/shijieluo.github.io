@@ -368,6 +368,312 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shijieluo.github.io/2018/04/08/程序员的自我修养（二）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shijieluo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shijieluo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/08/程序员的自我修养（二）/" itemprop="url">程序员的自我修养（二）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-08T16:26:07+08:00">
+                2018-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/程序员的自我修养/" itemprop="url" rel="index">
+                    <span itemprop="name">程序员的自我修养</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="gcc编译链接过程"><a href="#gcc编译链接过程" class="headerlink" title="gcc编译链接过程"></a>gcc编译链接过程</h1><h2 id="预编译"><a href="#预编译" class="headerlink" title="预编译"></a>预编译</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -E hello.c -o hello.i</span><br></pre></td></tr></table></figure>
+<p>预编译,实际上是把.c文件转换成.i文件,主要内容如下:</p>
+<ol>
+<li>把宏定义和include的头文件展开</li>
+<li>删除注释</li>
+<li>添加行号和文件标示名</li>
+<li>保留所有#pragma编译器指令<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2>编译的过程是把预处理完的文件进行词法,语法,语义分析,优化后产生相应的汇编代码<br></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -S hello.i -o hello.s</span><br></pre></td></tr></table></figure>
+<h2 id="汇编"><a href="#汇编" class="headerlink" title="汇编"></a>汇编</h2><p>汇编器将汇编语言转变为可执行的机器代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -c hello.s -o hello.o</span><br></pre></td></tr></table></figure>
+<p>实际上gcc将根据不同的参数调用不同的后台程序去执行预编译,编译和汇编的过程,相应的程序分别为<br>预编译编译程序cc1,汇编器as,链接器ld.</p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>静态链接实际上是在程序加载运行之前将所需要的库链接到.o文件</p>
+<h2 id="编译器的编译过程"><a href="#编译器的编译过程" class="headerlink" title="编译器的编译过程"></a>编译器的编译过程</h2><p>一般分为6部:扫描,语法分析,语义分析,源代码优化,代码生成,目标代码优化.</p>
+<h3 id="扫描器的词法分析"><a href="#扫描器的词法分析" class="headerlink" title="扫描器的词法分析"></a>扫描器的词法分析</h3><p>将代码分割成简单的记号,一般分为:关键字,标识符,字面量和特殊符号</p>
+<h3 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h3><p>通过语法分析器对扫描器产生的记号进行语法分析,产生语法树.<br>分析过程采用上下文无关语法.</p>
+<h3 id="语义分析"><a href="#语义分析" class="headerlink" title="语义分析"></a>语义分析</h3><p>语义分析分为静态语义和动态语义,动态语义只有在运行时才能确定.<br>静态语义包括声明和类型的匹配.<br>通过语义分析,整个语法树的表达式都被标识了类型</p>
+<h3 id="中间语言生成"><a href="#中间语言生成" class="headerlink" title="中间语言生成"></a>中间语言生成</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shijieluo.github.io/2018/04/08/程序员的自我修养（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shijieluo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shijieluo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/08/程序员的自我修养（一）/" itemprop="url">程序员的自我修养（一）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-08T16:24:00+08:00">
+                2018-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/程序员的自我修养/" itemprop="url" rel="index">
+                    <span itemprop="name">程序员的自我修养</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="温故而知新"><a href="#温故而知新" class="headerlink" title="温故而知新"></a>温故而知新</h1><h2 id="要点记录"><a href="#要点记录" class="headerlink" title="要点记录"></a>要点记录</h2><ol>
+<li>SMP对称多处理器的概念和结构<br>概念:每个CPU的地位和功能都是一样的<br>结构:<br>与非对称多处理器的区别:<br>延伸概念:NUMA和UMA的区别</li>
+<li>计算机的硬件体系结构和软件体系结构<br>计算机的早期硬件体系结构一般有三个最关键的部件:CPU,内存,IO设备<br>计算机的软件体系结构:<br>系统调用一般以软件中断的方式提供,Linux,0x80号中断作为系统调用接口,Windows0x2E.</li>
+<li>文件系统<br>文件系统的作用是什么?<br>保存文件的存储结构,维护这些数据结构并且保证磁盘中的扇区能够被有效的利用和组织.</li>
+<li>分页和分段</li>
+<li>linux多线程和三种线程模型</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://shijieluo.github.io/2018/04/08/Android7-0ueventd及coldboot分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -857,7 +1163,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -868,7 +1174,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -879,7 +1185,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

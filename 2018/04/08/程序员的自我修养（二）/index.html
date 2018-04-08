@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="编译、链接," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="你好，欢迎来到我的个人技术博客！">
+<meta name="description" content="gcc编译链接过程预编译1gcc -E hello.c -o hello.i 预编译,实际上是把.c文件转换成.i文件,主要内容如下:  把宏定义和include的头文件展开 删除注释 添加行号和文件标示名 保留所有#pragma编译器指令编译编译的过程是把预处理完的文件进行词法,语法,语义分析,优化后产生相应的汇编代码  1gcc -S hello.i -o hello.s 汇编汇编器将汇编语言">
+<meta name="keywords" content="编译、链接">
 <meta property="og:type" content="article">
-<meta property="og:title" content="置顶文章">
-<meta property="og:url" content="http://shijieluo.github.io/2018/04/08/My-First-Post/index.html">
+<meta property="og:title" content="程序员的自我修养（二）">
+<meta property="og:url" content="http://shijieluo.github.io/2018/04/08/程序员的自我修养（二）/index.html">
 <meta property="og:site_name" content="shijieluo&#39;s blog">
-<meta property="og:description" content="你好，欢迎来到我的个人技术博客！">
+<meta property="og:description" content="gcc编译链接过程预编译1gcc -E hello.c -o hello.i 预编译,实际上是把.c文件转换成.i文件,主要内容如下:  把宏定义和include的头文件展开 删除注释 添加行号和文件标示名 保留所有#pragma编译器指令编译编译的过程是把预处理完的文件进行词法,语法,语义分析,优化后产生相应的汇编代码  1gcc -S hello.i -o hello.s 汇编汇编器将汇编语言">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-08T07:34:38.808Z">
+<meta property="og:updated_time" content="2018-04-08T08:27:13.747Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="置顶文章">
-<meta name="twitter:description" content="你好，欢迎来到我的个人技术博客！">
+<meta name="twitter:title" content="程序员的自我修养（二）">
+<meta name="twitter:description" content="gcc编译链接过程预编译1gcc -E hello.c -o hello.i 预编译,实际上是把.c文件转换成.i文件,主要内容如下:  把宏定义和include的头文件展开 删除注释 添加行号和文件标示名 保留所有#pragma编译器指令编译编译的过程是把预处理完的文件进行词法,语法,语义分析,优化后产生相应的汇编代码  1gcc -S hello.i -o hello.s 汇编汇编器将汇编语言">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://shijieluo.github.io/2018/04/08/My-First-Post/"/>
+  <link rel="canonical" href="http://shijieluo.github.io/2018/04/08/程序员的自我修养（二）/"/>
 
 
 
 
 
-  <title>置顶文章 | shijieluo's blog</title>
+  <title>程序员的自我修养（二） | shijieluo's blog</title>
   
 
 
@@ -252,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://shijieluo.github.io/2018/04/08/My-First-Post/">
+    <link itemprop="mainEntityOfPage" href="http://shijieluo.github.io/2018/04/08/程序员的自我修养（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shijieluo">
@@ -269,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">置顶文章</h1>
+          <h1 class="post-title" itemprop="name headline">程序员的自我修养（二）</h1>
         
 
         <div class="post-meta">
@@ -281,7 +282,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-08T14:59:37+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-08T16:26:07+08:00">
                 2018-04-08
               </time>
             
@@ -291,6 +292,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/程序员的自我修养/" itemprop="url" rel="index">
+                    <span itemprop="name">程序员的自我修养</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -319,7 +342,24 @@
       
 
       
-        <h1 id="你好，欢迎来到我的个人技术博客！"><a href="#你好，欢迎来到我的个人技术博客！" class="headerlink" title="你好，欢迎来到我的个人技术博客！"></a>你好，欢迎来到我的个人技术博客！</h1>
+        <h1 id="gcc编译链接过程"><a href="#gcc编译链接过程" class="headerlink" title="gcc编译链接过程"></a>gcc编译链接过程</h1><h2 id="预编译"><a href="#预编译" class="headerlink" title="预编译"></a>预编译</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -E hello.c -o hello.i</span><br></pre></td></tr></table></figure>
+<p>预编译,实际上是把.c文件转换成.i文件,主要内容如下:</p>
+<ol>
+<li>把宏定义和include的头文件展开</li>
+<li>删除注释</li>
+<li>添加行号和文件标示名</li>
+<li>保留所有#pragma编译器指令<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2>编译的过程是把预处理完的文件进行词法,语法,语义分析,优化后产生相应的汇编代码<br></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -S hello.i -o hello.s</span><br></pre></td></tr></table></figure>
+<h2 id="汇编"><a href="#汇编" class="headerlink" title="汇编"></a>汇编</h2><p>汇编器将汇编语言转变为可执行的机器代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -c hello.s -o hello.o</span><br></pre></td></tr></table></figure>
+<p>实际上gcc将根据不同的参数调用不同的后台程序去执行预编译,编译和汇编的过程,相应的程序分别为<br>预编译编译程序cc1,汇编器as,链接器ld.</p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>静态链接实际上是在程序加载运行之前将所需要的库链接到.o文件</p>
+<h2 id="编译器的编译过程"><a href="#编译器的编译过程" class="headerlink" title="编译器的编译过程"></a>编译器的编译过程</h2><p>一般分为6部:扫描,语法分析,语义分析,源代码优化,代码生成,目标代码优化.</p>
+<h3 id="扫描器的词法分析"><a href="#扫描器的词法分析" class="headerlink" title="扫描器的词法分析"></a>扫描器的词法分析</h3><p>将代码分割成简单的记号,一般分为:关键字,标识符,字面量和特殊符号</p>
+<h3 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h3><p>通过语法分析器对扫描器产生的记号进行语法分析,产生语法树.<br>分析过程采用上下文无关语法.</p>
+<h3 id="语义分析"><a href="#语义分析" class="headerlink" title="语义分析"></a>语义分析</h3><p>语义分析分为静态语义和动态语义,动态语义只有在运行时才能确定.<br>静态语义包括声明和类型的匹配.<br>通过语义分析,整个语法树的表达式都被标识了类型</p>
+<h3 id="中间语言生成"><a href="#中间语言生成" class="headerlink" title="中间语言生成"></a>中间语言生成</h3>
       
     </div>
     
@@ -334,6 +374,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/编译、链接/" rel="tag"># 编译、链接</a>
+          
+        </div>
+      
 
       
       
@@ -343,8 +389,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/08/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/04/08/程序员的自我修养（一）/" rel="next" title="程序员的自我修养（一）">
+                <i class="fa fa-chevron-left"></i> 程序员的自我修养（一）
               </a>
             
           </div>
@@ -352,10 +398,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/08/Android7-0init进程分析/" rel="prev" title="Android7.0init进程分析">
-                Android7.0init进程分析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -487,7 +529,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#你好，欢迎来到我的个人技术博客！"><span class="nav-number">1.</span> <span class="nav-text">你好，欢迎来到我的个人技术博客！</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gcc编译链接过程"><span class="nav-number">1.</span> <span class="nav-text">gcc编译链接过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#预编译"><span class="nav-number">1.1.</span> <span class="nav-text">预编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译"><span class="nav-number">1.2.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#汇编"><span class="nav-number">1.3.</span> <span class="nav-text">汇编</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链接"><span class="nav-number">1.4.</span> <span class="nav-text">链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译器的编译过程"><span class="nav-number">1.5.</span> <span class="nav-text">编译器的编译过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#扫描器的词法分析"><span class="nav-number">1.5.1.</span> <span class="nav-text">扫描器的词法分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法分析"><span class="nav-number">1.5.2.</span> <span class="nav-text">语法分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语义分析"><span class="nav-number">1.5.3.</span> <span class="nav-text">语义分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间语言生成"><span class="nav-number">1.5.4.</span> <span class="nav-text">中间语言生成</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

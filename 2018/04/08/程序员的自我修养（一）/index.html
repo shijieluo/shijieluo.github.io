@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="gcc编译、链接," />
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="shijieluo&#39;s blog">
-<meta property="og:url" content="http://shijieluo.github.io/tags/coldboot/index.html">
+<meta name="description" content="温故而知新要点记录 SMP对称多处理器的概念和结构概念:每个CPU的地位和功能都是一样的结构:与非对称多处理器的区别:延伸概念:NUMA和UMA的区别 计算机的硬件体系结构和软件体系结构计算机的早期硬件体系结构一般有三个最关键的部件:CPU,内存,IO设备计算机的软件体系结构:系统调用一般以软件中断的方式提供,Linux,0x80号中断作为系统调用接口,Windows0x2E. 文件系统文件系统的">
+<meta name="keywords" content="gcc编译、链接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序员的自我修养（一）">
+<meta property="og:url" content="http://shijieluo.github.io/2018/04/08/程序员的自我修养（一）/index.html">
 <meta property="og:site_name" content="shijieluo&#39;s blog">
+<meta property="og:description" content="温故而知新要点记录 SMP对称多处理器的概念和结构概念:每个CPU的地位和功能都是一样的结构:与非对称多处理器的区别:延伸概念:NUMA和UMA的区别 计算机的硬件体系结构和软件体系结构计算机的早期硬件体系结构一般有三个最关键的部件:CPU,内存,IO设备计算机的软件体系结构:系统调用一般以软件中断的方式提供,Linux,0x80号中断作为系统调用接口,Windows0x2E. 文件系统文件系统的">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-08T08:25:33.127Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shijieluo&#39;s blog">
+<meta name="twitter:title" content="程序员的自我修养（一）">
+<meta name="twitter:description" content="温故而知新要点记录 SMP对称多处理器的概念和结构概念:每个CPU的地位和功能都是一样的结构:与非对称多处理器的区别:延伸概念:NUMA和UMA的区别 计算机的硬件体系结构和软件体系结构计算机的早期硬件体系结构一般有三个最关键的部件:CPU,内存,IO设备计算机的软件体系结构:系统调用一般以软件中断的方式提供,Linux,0x80号中断作为系统调用接口,Windows0x2E. 文件系统文件系统的">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://shijieluo.github.io/tags/coldboot/"/>
+  <link rel="canonical" href="http://shijieluo.github.io/2018/04/08/程序员的自我修养（一）/"/>
 
 
 
 
 
-  <title>Tag: coldboot | shijieluo's blog</title>
+  <title>程序员的自我修养（一） | shijieluo's blog</title>
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,54 +239,179 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>coldboot<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shijieluo.github.io/2018/04/08/程序员的自我修养（一）/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shijieluo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shijieluo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/04/08/Android7-0ueventd及coldboot分析/" itemprop="url">
-              
-                <span itemprop="name">Android7.0ueventd及coldboot分析</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">程序员的自我修养（一）</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-08T16:15:35+08:00"
-              content="2018-04-08" >
-          04-08
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-08T16:24:00+08:00">
+                2018-04-08
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/程序员的自我修养/" itemprop="url" rel="index">
+                    <span itemprop="name">程序员的自我修养</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="温故而知新"><a href="#温故而知新" class="headerlink" title="温故而知新"></a>温故而知新</h1><h2 id="要点记录"><a href="#要点记录" class="headerlink" title="要点记录"></a>要点记录</h2><ol>
+<li>SMP对称多处理器的概念和结构<br>概念:每个CPU的地位和功能都是一样的<br>结构:<br>与非对称多处理器的区别:<br>延伸概念:NUMA和UMA的区别</li>
+<li>计算机的硬件体系结构和软件体系结构<br>计算机的早期硬件体系结构一般有三个最关键的部件:CPU,内存,IO设备<br>计算机的软件体系结构:<br>系统调用一般以软件中断的方式提供,Linux,0x80号中断作为系统调用接口,Windows0x2E.</li>
+<li>文件系统<br>文件系统的作用是什么?<br>保存文件的存储结构,维护这些数据结构并且保证磁盘中的扇区能够被有效的利用和组织.</li>
+<li>分页和分段</li>
+<li>linux多线程和三种线程模型</li>
+</ol>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/gcc编译、链接/" rel="tag"># gcc编译、链接</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/08/Android7-0ueventd及coldboot分析/" rel="next" title="Android7.0ueventd及coldboot分析">
+                <i class="fa fa-chevron-left"></i> Android7.0ueventd及coldboot分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/08/程序员的自我修养（二）/" rel="prev" title="程序员的自我修养（二）">
+                程序员的自我修养（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -289,6 +419,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -309,8 +443,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -370,6 +513,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#温故而知新"><span class="nav-number">1.</span> <span class="nav-text">温故而知新</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#要点记录"><span class="nav-number">1.1.</span> <span class="nav-text">要点记录</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -510,6 +669,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
