@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="字典树," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="参考文献浅谈字典树 简介字典树是一种hash树，其作用为快速匹配字符串。 参考文献中的引子非常形象，这里直接引用。1、给出n个单词和m个询问，每次询问一个单词，回答这个单词是否在单词表中出现过。 答：简单！map，短小精悍。 好。下一个 2、给出n个单词和m个询问，每次询问一个前缀，回答询问是多少个单词的前缀。 答：map，把每个单词拆开。 judge：n&amp;lt;=200000，TLE！ 这就需要">
+<meta name="keywords" content="字典树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字典树详解">
+<meta property="og:url" content="http://shijieluo.github.io/2018/07/01/字典树详解/index.html">
+<meta property="og:site_name" content="shijieluo&#39;s blog">
+<meta property="og:description" content="参考文献浅谈字典树 简介字典树是一种hash树，其作用为快速匹配字符串。 参考文献中的引子非常形象，这里直接引用。1、给出n个单词和m个询问，每次询问一个单词，回答这个单词是否在单词表中出现过。 答：简单！map，短小精悍。 好。下一个 2、给出n个单词和m个询问，每次询问一个前缀，回答询问是多少个单词的前缀。 答：map，把每个单词拆开。 judge：n&amp;lt;=200000，TLE！ 这就需要">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-01T12:05:55.071Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="字典树详解">
+<meta name="twitter:description" content="参考文献浅谈字典树 简介字典树是一种hash树，其作用为快速匹配字符串。 参考文献中的引子非常形象，这里直接引用。1、给出n个单词和m个询问，每次询问一个单词，回答这个单词是否在单词表中出现过。 答：简单！map，短小精悍。 好。下一个 2、给出n个单词和m个询问，每次询问一个前缀，回答询问是多少个单词的前缀。 答：map，把每个单词拆开。 judge：n&amp;lt;=200000，TLE！ 这就需要">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shijieluo.github.io/2018/07/01/字典树详解/"/>
+
+
+
+
+
+  <title>字典树详解 | shijieluo's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shijieluo's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shijieluo.github.io/2018/07/01/字典树详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shijieluo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shijieluo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">字典树详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-01T20:04:20+08:00">
+                2018-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="https://www.cnblogs.com/TheRoadToTheGold/p/6290732.html" target="_blank" rel="noopener">浅谈字典树</a></p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>字典树是一种hash树，其作用为快速匹配字符串。</p>
+<p>参考文献中的引子非常形象，这里直接引用。<br>1、给出n个单词和m个询问，每次询问一个单词，回答这个单词是否在单词表中出现过。</p>
+<p>答：简单！map，短小精悍。</p>
+<p>好。下一个</p>
+<p>2、给出n个单词和m个询问，每次询问一个前缀，回答询问是多少个单词的前缀。</p>
+<p>答：map，把每个单词拆开。</p>
+<p>judge：n&lt;=200000，TLE！</p>
+<p>这就需要一种高级数据结构——Trie树（字典树）</p>
+<h2 id="字典树的编号操作"><a href="#字典树的编号操作" class="headerlink" title="字典树的编号操作"></a>字典树的编号操作</h2><p>对于每个输入的单词，从1,2,…开始编号。root节点的编号为0.</p>
+<p>对于每个节点的子节点按字母的字典序从0~25编号（只有小写或大写）<br>则trie[i][j]=k表示第i个字符的子结点j的编号为k。</p>
+<p>比如对于abc，dea，编号则依次为1,2,3,4,5,6。<br>那么trie[1][2]则表示a节点的第二个孩子即’b’的编号，这里显然为2。</p>
+<h1 id="算法基本操作"><a href="#算法基本操作" class="headerlink" title="算法基本操作"></a>算法基本操作</h1><ol>
+<li>建树</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">void insert(char *s)//插入单词s</span><br><span class="line">&#123;</span><br><span class="line">    len=strlen(s);//单词s的长度</span><br><span class="line">    root=0;//根节点编号为0</span><br><span class="line">    for(int i=0;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        int id=s[i]-&apos;a&apos;;//第二种编号</span><br><span class="line">        if(!trie[root][id])//如果之前没有从root到id的前缀 </span><br><span class="line">                    trie[root][id]=++tot;//插入，tot即为第一种编号，全局变量</span><br><span class="line">        root=trie[root][id];//顺着字典树往下走</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>查询</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">bool find(char *s)</span><br><span class="line">&#123;</span><br><span class="line">    len=strlen(s);</span><br><span class="line">    root=0;//从根结点开始找</span><br><span class="line">    for(int i=0;s[i];i++)</span><br><span class="line">    &#123;</span><br><span class="line">        int x=s[i]-&apos;a&apos;;//</span><br><span class="line">        if(trie[root][x]==0)   return false;//以root为头结点的x字母不存在，返回0 </span><br><span class="line">        root=trie[root][x];//为查询下个字母做准备，往下走 </span><br><span class="line">    &#125;</span><br><span class="line">    return true;//找到了</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>leetcode 677 Mapsum。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">const int MAXSIZE = 26;</span><br><span class="line">struct TrieNode &#123;</span><br><span class="line">    TrieNode *next[MAXSIZE];</span><br><span class="line">    int val;</span><br><span class="line">    TrieNode()&#123;</span><br><span class="line">        val = 0;</span><br><span class="line">        for(int i=0; i&lt;MAXSIZE; i++) &#123;</span><br><span class="line">            next[i] = NULL;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">class MapSum &#123;</span><br><span class="line">public:</span><br><span class="line">    /** Initialize your data structure here. */</span><br><span class="line">    MapSum() &#123;</span><br><span class="line">        root = new TrieNode;        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void insert(string key, int val) &#123;</span><br><span class="line">        TrieNode *temp = root;</span><br><span class="line">        for(int i=0; i&lt;key.size(); i++) &#123;</span><br><span class="line">            if(!temp-&gt;next[key[i]-&apos;a&apos;]) &#123;</span><br><span class="line">                TrieNode *node = new TrieNode;</span><br><span class="line">                temp-&gt;next[key[i]-&apos;a&apos;] = node;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp-&gt;next[key[i]-&apos;a&apos;];</span><br><span class="line">            if(i == key.size()-1) &#123;</span><br><span class="line">                temp-&gt;val = val;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int sum(string prefix) &#123;</span><br><span class="line">        TrieNode *temp = root;</span><br><span class="line">        for(int i = 0; i&lt;prefix.size(); i++) &#123;</span><br><span class="line">            if(!temp-&gt;next[prefix[i]-&apos;a&apos;]) &#123;</span><br><span class="line">                return 0;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                temp = temp-&gt;next[prefix[i]-&apos;a&apos;];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        queue&lt;TrieNode*&gt; q;</span><br><span class="line">        q.push(temp);</span><br><span class="line">        while(!q.empty()) &#123;</span><br><span class="line">            TrieNode *front = q.front();</span><br><span class="line">            q.pop();</span><br><span class="line">            ans += front-&gt;val;</span><br><span class="line">            for(int i=0; i&lt;MAXSIZE; i++) &#123;</span><br><span class="line">                if(front-&gt;next[i]) &#123;</span><br><span class="line">                    q.push(front-&gt;next[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">private:</span><br><span class="line">    TrieNode *root;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Your MapSum object will be instantiated and called as such:</span><br><span class="line"> * MapSum obj = new MapSum();</span><br><span class="line"> * obj.insert(key,val);</span><br><span class="line"> * int param_2 = obj.sum(prefix);</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/字典树/" rel="tag"># 字典树</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/03/github-hexo博客搭建流程/" rel="next" title="github+hexo博客搭建流程">
+                <i class="fa fa-chevron-left"></i> github+hexo博客搭建流程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">shijieluo</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">1.</span> <span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字典树的编号操作"><span class="nav-number">2.1.</span> <span class="nav-text">字典树的编号操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#算法基本操作"><span class="nav-number">3.</span> <span class="nav-text">算法基本操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实例"><span class="nav-number">4.</span> <span class="nav-text">实例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shijieluo</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
