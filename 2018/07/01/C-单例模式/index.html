@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="利用hexo搭建个人github blog在github上创建repo 登录github.com创建repo:.github.io 创建hexo和master分支，并将hexo分支设置为默认分支。 git clone repo到本地  node.js相关配置 下载node.js 进入本地repo，依次执行如下命令： 123$ npm install -g hexo$ npm install --s">
+<meta name="description" content="单例模式单线程下的单例1234567891011121314151617#include &amp;lt;iostream&amp;gt;using namespace std;class Singleton&amp;#123;private:	Singleton()&amp;#123;&amp;#125;	static Singleton *p;public:	static Singleton *getInstance();	&amp;#12">
 <meta property="og:type" content="article">
-<meta property="og:title" content="github+hexo博客搭建流程">
-<meta property="og:url" content="http://shijieluo.github.io/2018/05/03/github-hexo博客搭建流程/index.html">
+<meta property="og:title" content="C++单例模式">
+<meta property="og:url" content="http://shijieluo.github.io/2018/07/01/C-单例模式/index.html">
 <meta property="og:site_name" content="shijieluo&#39;s blog">
-<meta property="og:description" content="利用hexo搭建个人github blog在github上创建repo 登录github.com创建repo:.github.io 创建hexo和master分支，并将hexo分支设置为默认分支。 git clone repo到本地  node.js相关配置 下载node.js 进入本地repo，依次执行如下命令： 123$ npm install -g hexo$ npm install --s">
+<meta property="og:description" content="单例模式单线程下的单例1234567891011121314151617#include &amp;lt;iostream&amp;gt;using namespace std;class Singleton&amp;#123;private:	Singleton()&amp;#123;&amp;#125;	static Singleton *p;public:	static Singleton *getInstance();	&amp;#12">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-03T04:04:55.595Z">
+<meta property="og:updated_time" content="2018-07-01T12:19:40.989Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="github+hexo博客搭建流程">
-<meta name="twitter:description" content="利用hexo搭建个人github blog在github上创建repo 登录github.com创建repo:.github.io 创建hexo和master分支，并将hexo分支设置为默认分支。 git clone repo到本地  node.js相关配置 下载node.js 进入本地repo，依次执行如下命令： 123$ npm install -g hexo$ npm install --s">
+<meta name="twitter:title" content="C++单例模式">
+<meta name="twitter:description" content="单例模式单线程下的单例1234567891011121314151617#include &amp;lt;iostream&amp;gt;using namespace std;class Singleton&amp;#123;private:	Singleton()&amp;#123;&amp;#125;	static Singleton *p;public:	static Singleton *getInstance();	&amp;#12">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://shijieluo.github.io/2018/05/03/github-hexo博客搭建流程/"/>
+  <link rel="canonical" href="http://shijieluo.github.io/2018/07/01/C-单例模式/"/>
 
 
 
 
 
-  <title>github+hexo博客搭建流程 | shijieluo's blog</title>
+  <title>C++单例模式 | shijieluo's blog</title>
   
 
 
@@ -252,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://shijieluo.github.io/2018/05/03/github-hexo博客搭建流程/">
+    <link itemprop="mainEntityOfPage" href="http://shijieluo.github.io/2018/07/01/C-单例模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shijieluo">
@@ -269,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">github+hexo博客搭建流程</h1>
+          <h1 class="post-title" itemprop="name headline">C++单例模式</h1>
         
 
         <div class="post-meta">
@@ -281,8 +281,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-03T11:08:42+08:00">
-                2018-05-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-01T20:18:33+08:00">
+                2018-07-01
               </time>
             
 
@@ -304,8 +304,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/其他/" itemprop="url" rel="index">
-                    <span itemprop="name">其他</span>
+                  <a href="/categories/Design-Pattern/" itemprop="url" rel="index">
+                    <span itemprop="name">Design Pattern</span>
                   </a>
                 </span>
 
@@ -341,29 +341,14 @@
       
 
       
-        <h1 id="利用hexo搭建个人github-blog"><a href="#利用hexo搭建个人github-blog" class="headerlink" title="利用hexo搭建个人github blog"></a>利用hexo搭建个人github blog</h1><h2 id="在github上创建repo"><a href="#在github上创建repo" class="headerlink" title="在github上创建repo"></a>在github上创建repo</h2><ul>
-<li>登录github.com创建repo:<username>.github.io</username></li>
-<li>创建hexo和master分支，并将hexo分支设置为默认分支。</li>
-<li>git clone repo到本地</li>
-</ul>
-<h2 id="node-js相关配置"><a href="#node-js相关配置" class="headerlink" title="node.js相关配置"></a>node.js相关配置</h2><ul>
-<li>下载node.js</li>
-<li><p>进入本地repo，依次执行如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br><span class="line">$ npm install --save hexo-deployer-git</span><br><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>这样hexo初始化已经完成。</p>
-</li>
-</ul>
-<h2 id="hexo配置"><a href="#hexo配置" class="headerlink" title="hexo配置"></a>hexo配置</h2><ul>
-<li><p>修改当前repo下的_config.yml文件</p>
-<p>仔细阅读相关说明之后进行更改基础配置</p>
-</li>
-<li>修改deploy标签，将hexo与github仓库关联</li>
-<li>还可以在hexo官网上下载博客主题</li>
-</ul>
-<h2 id="hexo配置置顶博文"><a href="#hexo配置置顶博文" class="headerlink" title="hexo配置置顶博文"></a>hexo配置置顶博文</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm uninstall hexo-generator-index --save</span><br><span class="line">$ npm install hexo-generator-index-pin-top --save</span><br></pre></td></tr></table></figure>
-<p>下载插件后，将在md头中新增一行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top: true</span><br></pre></td></tr></table></figure></p>
-<h2 id="github-com和hexo博文发布命令流程"><a href="#github-com和hexo博文发布命令流程" class="headerlink" title="github.com和hexo博文发布命令流程"></a>github.com和hexo博文发布命令流程</h2><p>hexo n + “$title”在/source/_posts文件夹中生成md文件，编辑好md文件后，按如下流程执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -m &quot;&quot;</span><br><span class="line">$ git push origin hexo</span><br><span class="line">$ hexo d -g</span><br></pre></td></tr></table></figure></p>
+        <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><h2 id="单线程下的单例"><a href="#单线程下的单例" class="headerlink" title="单线程下的单例"></a>单线程下的单例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">class Singleton&#123;</span><br><span class="line">private:</span><br><span class="line">	Singleton()&#123;&#125;</span><br><span class="line">	static Singleton *p;</span><br><span class="line">public:</span><br><span class="line">	static Singleton *getInstance();</span><br><span class="line">	</span><br><span class="line">&#125;;</span><br><span class="line">Singleton* Singleton::p = NULL;</span><br><span class="line">Singleton* Singleton::getInstance()&#123;</span><br><span class="line">	if(p == NULL)&#123;</span><br><span class="line">		p = new Singleton();</span><br><span class="line">	&#125;</span><br><span class="line">	return p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上是单线程下的单例模式，但是上述代码有很大的问题，考虑两个线程同时首次调用instance方法且同时检测到p是NULL值，则两个线程会同时构造一个实例给p，这是严重的错误！</p>
+<h2 id="多线程加锁实现（懒汉）"><a href="#多线程加锁实现（懒汉）" class="headerlink" title="多线程加锁实现（懒汉）"></a>多线程加锁实现（懒汉）</h2><p>双加锁保证线程安全。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">class Singleton&#123;</span><br><span class="line">private:</span><br><span class="line">	Singleton()&#123;</span><br><span class="line">		pthread_mutex_init(&amp;mutex, NULL);</span><br><span class="line">	&#125;</span><br><span class="line">	static Singleton *p;</span><br><span class="line">	static pthread_mutex_t mutex;</span><br><span class="line">public:</span><br><span class="line">	static Singleton *getInstance();</span><br><span class="line">	</span><br><span class="line">&#125;;</span><br><span class="line">Singleton* Singleton::p = NULL;</span><br><span class="line">pthread_mutex_t Singleton::mutex;</span><br><span class="line">Singleton* Singleton::getInstance()&#123;</span><br><span class="line">	if(p == NULL)&#123;</span><br><span class="line">		pthread_mutex_lock(&amp;mutex);</span><br><span class="line">		if(p == NULL)&#123;</span><br><span class="line">			p = new Singleton();</span><br><span class="line">		&#125;</span><br><span class="line">		pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">	&#125;</span><br><span class="line">	return p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="多线程静态局部变量（懒汉）"><a href="#多线程静态局部变量（懒汉）" class="headerlink" title="多线程静态局部变量（懒汉）"></a>多线程静态局部变量（懒汉）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">class Singleton&#123;</span><br><span class="line">private:</span><br><span class="line">	Singleton()&#123;</span><br><span class="line">		pthread_mutex_init(&amp;mutex,NULL);</span><br><span class="line">	&#125;</span><br><span class="line">	static pthread_mutex_t mutex;</span><br><span class="line">public:</span><br><span class="line">	static Singleton* getInstance();</span><br><span class="line">	</span><br><span class="line">&#125;;</span><br><span class="line">pthread_mutex_t Singleton::mutex;</span><br><span class="line">Singleton* Singleton::getInstance()&#123;</span><br><span class="line">	pthread_mutex_lock(&amp;mutex);</span><br><span class="line">	static Singleton singleton;</span><br><span class="line">	pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">	return &amp;singleton;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>单例对象不存在时，两个线程同时想创建单例时，因为有锁机制的存在，所以不会初始化两次局部变量singleton。</p>
+<h2 id="多线程不加锁实现（饿汉）"><a href="#多线程不加锁实现（饿汉）" class="headerlink" title="多线程不加锁实现（饿汉）"></a>多线程不加锁实现（饿汉）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">class Singleton&#123;</span><br><span class="line">private:</span><br><span class="line">	Singleton()&#123;&#125;</span><br><span class="line">	static Singleton* p;</span><br><span class="line">public:</span><br><span class="line">	static Singleton* getInstance();</span><br><span class="line">	</span><br><span class="line">&#125;;</span><br><span class="line">Singleton* Singleton::p = new Singleton();</span><br><span class="line">Singleton* Singleton::getInstance()&#123;</span><br><span class="line">	return p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>单线程下全局定义唯一一个单例对象。进入多线程环境后显然线程安全。</p>
 
       
     </div>
@@ -388,8 +373,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/01/linux多线程/" rel="next" title="linux多线程">
-                <i class="fa fa-chevron-left"></i> linux多线程
+              <a href="/2018/07/01/线段树初探/" rel="next" title="线段树初探">
+                <i class="fa fa-chevron-left"></i> 线段树初探
               </a>
             
           </div>
@@ -398,8 +383,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/01/字典树详解/" rel="prev" title="字典树详解">
-                字典树详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/01/静态链接/" rel="prev" title="静态链接">
+                静态链接 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -532,7 +517,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#利用hexo搭建个人github-blog"><span class="nav-number">1.</span> <span class="nav-text">利用hexo搭建个人github blog</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在github上创建repo"><span class="nav-number">1.1.</span> <span class="nav-text">在github上创建repo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node-js相关配置"><span class="nav-number">1.2.</span> <span class="nav-text">node.js相关配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo配置"><span class="nav-number">1.3.</span> <span class="nav-text">hexo配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo配置置顶博文"><span class="nav-number">1.4.</span> <span class="nav-text">hexo配置置顶博文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github-com和hexo博文发布命令流程"><span class="nav-number">1.5.</span> <span class="nav-text">github.com和hexo博文发布命令流程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#单例模式"><span class="nav-number">1.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单线程下的单例"><span class="nav-number">1.1.</span> <span class="nav-text">单线程下的单例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程加锁实现（懒汉）"><span class="nav-number">1.2.</span> <span class="nav-text">多线程加锁实现（懒汉）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程静态局部变量（懒汉）"><span class="nav-number">1.3.</span> <span class="nav-text">多线程静态局部变量（懒汉）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程不加锁实现（饿汉）"><span class="nav-number">1.4.</span> <span class="nav-text">多线程不加锁实现（饿汉）</span></a></li></ol></li></ol></div>
             
 
           </div>
