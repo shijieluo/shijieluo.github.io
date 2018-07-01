@@ -249,6 +249,302 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shijieluo.github.io/2018/05/01/linux多线程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shijieluo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shijieluo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/01/linux多线程/" itemprop="url">linux多线程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-01T23:28:48+08:00">
+                2018-05-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux环境编程/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux环境编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Linux多线程"><a href="#Linux多线程" class="headerlink" title="Linux多线程"></a>Linux多线程</h1><h2 id="一个多线程的例子"><a href="#一个多线程的例子" class="headerlink" title="一个多线程的例子"></a>一个多线程的例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">//三个线程id分别为ABC,按ABC的顺序连续输出,重复10次</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">#include&lt;pthread.h&gt;</span><br><span class="line">#include&lt;unistd.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line">pthread_cond_t cond = PTHREAD_COND_INITIALIZER;</span><br><span class="line">char tag = &apos;A&apos;;</span><br><span class="line">void *thread_func(void *arg)&#123;</span><br><span class="line">    char name = *((char *)arg);</span><br><span class="line">    //cout &lt;&lt; name &lt;&lt; endl;     </span><br><span class="line">    for(int i = 0; i&lt; 10; i++)&#123;</span><br><span class="line">        pthread_mutex_lock(&amp;mutex);</span><br><span class="line">        while(tag != name)&#123; // 试试这时使用if会发生什么事</span><br><span class="line">            cout &lt;&lt; name &lt;&lt; &quot;wait&quot; &lt;&lt;endl;</span><br><span class="line">            pthread_cond_wait(&amp;cond, &amp;mutex);</span><br><span class="line">        &#125;        </span><br><span class="line">        cout&lt;&lt; tag &lt;&lt; i+1 &lt;&lt;endl;</span><br><span class="line">        tag = (tag - &apos;A&apos; + 1) % 3 + &apos;A&apos;;    </span><br><span class="line">        pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">        pthread_cond_broadcast(&amp;cond); //试试用pthread_cond_signal会发生什么</span><br><span class="line">        cout&lt;&lt; &quot;awake&quot;&lt;&lt; endl;        </span><br><span class="line">    &#125;</span><br><span class="line">    pthread_exit(0);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">    pthread_t tid[3];</span><br><span class="line">    char *temp = &quot;ABC&quot;;</span><br><span class="line">    for(int i = 0; i &lt; 3; i++)&#123;        </span><br><span class="line">        pthread_create(&amp;tid[i], NULL, thread_func, (void *)(temp + i));</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i = 0; i&lt; 3; i++)&#123;</span><br><span class="line">        pthread_join(tid[i], NULL);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="对于pthread-cond-wait的解释"><a href="#对于pthread-cond-wait的解释" class="headerlink" title="对于pthread_cond_wait的解释"></a>对于pthread_cond_wait的解释</h2><p>int pthread_cond_wait(pthread_cond_t <em>cond, pthread_mutex_t </em>mutex)<br>该函数需要配合互斥锁使用,进入等待之后将释放互斥锁,便于其它线程获取锁.</p>
+<h2 id="对于pthread-cond-signal-和-pthread-cond-broadcast的解释"><a href="#对于pthread-cond-signal-和-pthread-cond-broadcast的解释" class="headerlink" title="对于pthread_cond_signal 和 pthread_cond_broadcast的解释"></a>对于pthread_cond_signal 和 pthread_cond_broadcast的解释</h2><p>这两个函数只有一个参数,pthead_cond_t.<br>它们的区别是,前者,只会激活先进入等待队列的第一个进程;后者会激活所有等待线程.</p>
+<h2 id="while-和-if"><a href="#while-和-if" class="headerlink" title="while 和 if"></a>while 和 if</h2><p>这两个条件的区别</p>
+<ol>
+<li>因为pthread_cond_wait被激活后会返回,while会再执行一次循环体,这样如果条件依然没有被触发,将再次调用pthead_cond_wait;而if语句在被激活后会向下执行.</li>
+<li>上述不同可能导致死锁.</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://shijieluo.github.io/2018/05/01/多继承知识要点/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shijieluo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shijieluo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/01/多继承知识要点/" itemprop="url">多继承知识要点</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-01T23:15:50+08:00">
+                2018-05-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="多继承下的指针和引用规则"><a href="#多继承下的指针和引用规则" class="headerlink" title="多继承下的指针和引用规则"></a>多继承下的指针和引用规则</h1><ol>
+<li>多继承下的派生类的指针或引用能够转换为任何基类的指针或引用.</li>
+<li>指针和引用的类型决定了其访问权限,一个类的指针或者对象的引用只能访问其基类和其本身定义的public方法,而不能访问派生类的方法.</li>
+</ol>
+<h1 id="为什么要将根基类的析构函数定义为虚函数"><a href="#为什么要将根基类的析构函数定义为虚函数" class="headerlink" title="为什么要将根基类的析构函数定义为虚函数"></a>为什么要将根基类的析构函数定义为虚函数</h1><p>这样做能够防止基类类型的指针直接析构对象的基类部分,而不析构派生类部分,造成内存泄露.</p>
+<h1 id="虚继承"><a href="#虚继承" class="headerlink" title="虚继承"></a>虚继承</h1><p>在继承时,通过添加virtual关键字使基类成为虚基类.<br>虚派生的类的派生类将会直接构造虚基类的部分,然后在构造其直接基类的部分,而在使用直接基类的构造函数时将舍弃其构造虚基类的部分.<br><img src="/images/virtualInherit.png" alt="image"><br>对于上图,如果Bear和Raccoon不是类ZooAnimal的虚派生类,则构造Panda的时候,将两次构造ZooAnimal部分,这显然是错误的,而如果有<br>Bear : public virtual ZooAnimal;<br>Raccoon : public virtual ZooAnimal;<br>则Panda类将直接调用ZooAnimal的默认构造函数,再构造Bear的部分,舍弃Bear构造函数初始化列表中ZooAnimal的部分.<br>同理构造Raccoon部分时也将舍弃构造ZooAnimal的部分.<br>最后构造Panda自己的部分.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://shijieluo.github.io/2018/04/08/Linux-IPC-三-共享内存/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1526,7 +1822,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
